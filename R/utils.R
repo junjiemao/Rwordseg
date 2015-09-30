@@ -84,7 +84,7 @@
 
 .cleanjars <- function() {
 	cur.jars <- list.files(system.file("java", package = "Rwordseg"), full.names = TRUE)
-	tar.jars <- c("ansj_seg-0.9.1-jli.jar", "jianl_seg.jar", "juniversalchardet-1.0.3.jar","tree_split-1.0.1.jar")
+	tar.jars <- c("ansj_seg-0.9.1-jli.jar", "hatmatrix_seg.jar", "juniversalchardet-1.0.3.jar","nlp-lang-1.0.2.jar")
 	del.jars <- cur.jars[!basename(cur.jars) %in% tar.jars]
 	OUT <- NULL
 	if (length(del.jars) > 0) OUT <- try(unlink(del.jars, force = TRUE), silent = TRUE)

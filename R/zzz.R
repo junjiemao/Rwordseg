@@ -8,7 +8,7 @@
 	options(dic.dir = system.file("dict", package = "Rwordseg"))
 	options(app.dir = system.file("config", package = "Rwordseg"))
 	.cleanjars()
-	.jpackage(pkgname, lib.loc=libname)
+	.jpackage(pkgname, lib.loc=libname,jars = '*')
 	dictpath <- chartr("\\", "/", file.path(getOption("app.dir"), "userdic"))
 	if (!exists(".RwordsegEnv", envir = .GlobalEnv)) {
 		assign(".RwordsegEnv", new.env(), envir = .GlobalEnv)
@@ -16,7 +16,7 @@
 	if (exists("Analyzer", envir = .RwordsegEnv)) {
 		rm("Analyzer", envir = .RwordsegEnv)
 	}
-	Analyzer <- .jnew("org/jianl/rinterface/Analyzer")
+	Analyzer <- .jnew("org/rinterface/Analyzer",check = FALSE)
 	.jcall(Analyzer, "V", "setDicPath", dictpath)
 	.jcall(Analyzer, "V", "initialAnalyzer")
 	assign("Analyzer", Analyzer, envir = .RwordsegEnv)
